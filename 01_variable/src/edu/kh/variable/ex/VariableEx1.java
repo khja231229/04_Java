@@ -20,7 +20,7 @@ public class VariableEx1 {
 		 * [정수형]
 		 * byte    	(1byte)
 		 * short		(2byte)
-		 * int			(4byte)		* 정수 기본형 *
+		 * int			(4byte)		* 정수 기본형 *  
 		 * 
 		 * long			(8byte)   - 숫자 뒤에 L 
 		 * 
@@ -28,7 +28,7 @@ public class VariableEx1 {
 		 * [실수형]
 		 * float		(4byte)		- 숫자 뒤에 f
 		 * 
-		 * double		(8byte)		* 실수 기본형 *
+		 * double		(8byte)		* 실수 기본형 *    3.14
 		 * 
 		 * 
 		 * [문자형]
