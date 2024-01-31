@@ -231,7 +231,10 @@ public class ConditionEx {
 		int soc = sc.nextInt();
 		int sci = sc.nextInt();
 		
-		boolean flag = false;
+		// true : 40점 미만이 있을 경우
+		// false : 40점 미만이 없는 경우
+		boolean flag = false;  // -> true
+		
 		String result = "";
 		
 		if(kor < 40) { result += "국어 "; flag = true; }
@@ -255,9 +258,7 @@ public class ConditionEx {
 		
 		System.out.printf("PASS [점수 : %.1f / 100] \n", avg);
 	}
-	
-	
-	
+
 	
 	
 	
