@@ -16,6 +16,7 @@ public class Parent /* extends Object */ {
 	
 	// 기본 생성자
 	public Parent() {
+		super();
 		System.out.println("기본 생성자로 부모 객체 생성됨");
 	}
 	
