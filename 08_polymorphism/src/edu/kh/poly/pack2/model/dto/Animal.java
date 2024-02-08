@@ -6,7 +6,6 @@ package edu.kh.poly.pack2.model.dto;
 
 
 public abstract class Animal {
-	
 	// 동물의 공통된 필드 / 메서드 작성
 	private String type; // 종, 류(양서류, 포유류, 갑각류, 조류...)
 	
