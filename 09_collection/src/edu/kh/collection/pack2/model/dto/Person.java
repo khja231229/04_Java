@@ -96,8 +96,4 @@ public class Person {
 				&& gender == other.gender;
 	}
 	
-	
-	
-	
-	
 }

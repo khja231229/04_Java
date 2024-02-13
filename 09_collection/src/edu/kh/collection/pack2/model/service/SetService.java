@@ -269,7 +269,7 @@ public class SetService {
 		for(int i=0, end = amount/1000 ; i < end ; i++) {
 			
 			// for문 반복될 때 마다 새로운 Set 객체를 생성
-			Set<Integer> lotto = new TreeSet<Integer>(); 
+			Set<Integer> lotto = new TreeSet<Integer>();  
 			
 			while(lotto.size() < 6) {
 				lotto.add( random.nextInt(45) + 1 ); // 1 ~ 45 사이 난수 추가
