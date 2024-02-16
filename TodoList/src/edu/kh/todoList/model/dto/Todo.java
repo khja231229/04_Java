@@ -77,9 +77,4 @@ public class Todo implements Serializable{
 	}
 	
 	
-	
-	
-	
-	
-	
 }

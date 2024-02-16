@@ -67,8 +67,8 @@ public interface TodoListDAO {
 
 	/** 할 일 삭제
 	 * @param index
-	 * @return 성공 시삭제된 할 일(Todo) 반환
-	 * 				인덱스 범위 초과로 실패 시 null 반환 
+	 * @return 성공 시 삭제된 할 일(Todo) 반환
+	 * 				 인덱스 범위 초과로 실패 시 null 반환 
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */

@@ -13,7 +13,7 @@ public class TodoListRun {
 		
 		TodoListView view = new TodoListView(); // TodoListView 객체 생성
 		
-		
+		view.startView();
 		
 	}
 }

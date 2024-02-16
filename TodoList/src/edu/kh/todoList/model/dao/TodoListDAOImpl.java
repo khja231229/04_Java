@@ -81,52 +81,136 @@ public class TodoListDAOImpl implements TodoListDAO{
 	}
 	
 	
+	// ------------------------------------------------------------------------------
 	
-	
-	
-	
-	
-	
+	/* saveFile */
 	@Override
 	public void saveFile() throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
+		
+		// todoList를 파일로 저장하는 메서드
+		try {
+			// FILE_PATH 경로에 있는 파일과 연결된 객체 출력 스트림 생성
+			oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
+			oos.writeObject(todoList); // todoList 출력
+		}finally {
+			oos.close();
+		}
 		
 	}
 
+	// ------------------------------------------------------------------------------
+	
+	/* todoListFullView */
 	@Override
 	public List<Todo> todoListFullView() {
-		// TODO Auto-generated method stub
-		return null;
+		return todoList;
 	}
 
+	//------------------------------------------------------------------------------
+	
+	/* todoDetailView */
 	@Override
 	public Todo todoDetailView(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// 1. index 범위가 todoList 범위를 넘어 서면 null 반환
+		if( index < 0 || index >= todoList.size()  ) return null;
+		
+		// 2. index가 정상 범위인 경우 index번째 요소 반환
+		return todoList.get(index);
 	}
-
+	
+	
+	//------------------------------------------------------------------------------
+	
+	/* todoAdd */
 	@Override
 	public int todoAdd(Todo todo) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+		// todoList에 전달 받은 todo을 추가
+		// -> 성공 시 파일에 저장(출력) 후 삽입된 index를 반환
+		
+		// 추가 실패 시 -1 반환
+		
+		if( todoList.add(todo) ) { // 추가 성공
+			
+			// 파일 저장
+			saveFile();
+			
+			// 삽입된 index 반환
+			return todoList.size() - 1;
+		}
+		
+		
+		return -1; // 추가 실패
+ 	}
 
+	
+	//------------------------------------------------------------------------------
+	
+	/* todoComplete */
 	@Override
 	public boolean todoComplete(int index) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
+		// 1. index 범위 초과 시 false 반환
+		if(index < 0 || index >= todoList.size()) return false;
+		
+		// 2. index가 정상 범위인 경우
+		//   index번째 요소의 complete 값을 변경하고
+		//   파일 저장 후 true 반환
+		
+		boolean complete = todoList.get(index).isComplete();
+		todoList.get(index).setComplete(!complete);
+		
+		saveFile(); // 파일 저장
+		
+		return true;
+	}
+	
+	
+	//------------------------------------------------------------------------------
+	
+	/* todoUpdate */
 	@Override
 	public boolean todoUpdate(int index, String title, String detail) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
+	
+		// 수정된 제목, 내용을 이용해서 Todo 객체 생성
+		Todo todo = new Todo();
+		todo.setTitle(title);
+		todo.setDetail(detail);
+		
+		// index 번째 요소의 complete, regDate 값을 얻어와 todo에 세팅
+		todo.setComplete( todoList.get(index).isComplete() );
+		todo.setRegDate ( todoList.get(index).getRegDate() );
+		
+		// E List.set(int index, E e) : index번째 요소를 매개변수 e로 바꾸고
+		//															이전 요소를 반환(없으면 null)
+		
+		if(  todoList.set(index, todo) != null  ) { // 수정 성공
+			saveFile(); // 변경된 todo 저장
+			return true;
+		}
+		
 		return false;
 	}
-
+	
+	
+	//------------------------------------------------------------------------------
+	
+	/* todoDelete */
 	@Override
 	public Todo todoDelete(int index) throws FileNotFoundException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// index 범위 검사
+		if(index < 0 || index >= todoList.size() )  return null;
+		
+		// todoList에서 index 번째 요소 삭제 후 저장
+		Todo todo = todoList.remove(index);
+		
+		saveFile();
+		
+		return todo;
 	}
 
+	
+	
 }
